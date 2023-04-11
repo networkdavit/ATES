@@ -5,24 +5,28 @@
   <div class="row">
     <% @products.each do |product| %>
       <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <% if product.discount_price.present? %>
-            <div class="ribbon"><span>SALE</span></div>
-          <% end %>
-          <div class="card-body">
-            <h4 class="card-title"><%= product.title %></h4>
-            <p class="card-text"><%= product.description %></p>
+        <a href="<%= product_path(product) %>">
+          <div class="card mb-4 box-shadow">
             <% if product.discount_price.present? %>
-              <p class="card-text"><strong>Price:</strong> <span class="text-danger"><%= number_to_currency(product.discount_price) %></span> <strike><%= number_to_currency(product.price) %></strike></p>
-            <% else %>
-              <p class="card-text"><strong>Price:</strong> <%= number_to_currency(product.price) %></p>
+              <div class="ribbon"><span>SALE</span></div>
             <% end %>
+            <div class="card-body">
+              <h4 class="card-title"><%= product.title %></h4>
+              <p class="card-text"><%= product.description %></p>
+              <% if product.discount_price.present? %>
+                <p class="card-text"><strong>Price:</strong> <span class="text-danger"><%= number_to_currency(product.discount_price) %></span> <strike><%= number_to_currency(product.price) %></strike></p>
+              <% else %>
+                <p class="card-text"><strong>Price:</strong> <%= number_to_currency(product.price) %></p>
+              <% end %>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     <% end %>
   </div>
 </div>
+<%= render "shared/footer" %>
+
 
 <style>
     .ribbon {
@@ -51,5 +55,8 @@
         box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.5);
     }
 
+    a{
+        text-decoration: none;
+    }
+
 </style>
-<%= render "shared/footer" %>

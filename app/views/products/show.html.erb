@@ -1,0 +1,46 @@
+<%= render "shared/navbar" %>
+<div class="container">
+  <div class="card mb-4 box-shadow">
+    <% if @product.discount_price.present? %>
+      <div class="ribbon"><span>SALE</span></div>
+    <% end %>
+    <div class="card-body">
+      <h1 class="card-title"><%= @product.title %></h1>
+      <p class="card-text"><%= @product.description %></p>
+      <% if @product.discount_price.present? %>
+        <p class="card-text"><strong>Price:</strong> <span class="text-danger"><%= number_to_currency(@product.discount_price) %></span> <strike><%= number_to_currency(@product.price) %></strike></p>
+      <% else %>
+        <p class="card-text"><strong>Price:</strong> <%= number_to_currency(@product.price) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
+
+<style>
+    .ribbon {
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+    }
+
+    .ribbon span {
+        font-size: 16px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 20px;
+        transform: rotate(45deg);
+        display: block;
+        position: absolute;
+        width: 100px;
+        left: -15px;
+        top: 20px;
+        background-color: #ff6b6b;
+        background-image: linear-gradient(-45deg, #ff6b6b 0%, #ee6a7b 100%);
+        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.5);
+    }
+</style>
