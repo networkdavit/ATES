@@ -10,6 +10,15 @@
             <% if product.discount_price.present? %>
               <div class="ribbon"><span>SALE</span></div>
             <% end %>
+            <div class="image-gallery">
+              <div class="row">
+                <% if product.images.any? %>
+                  <div class="col-md-4">
+                    <%= image_tag product.images.first.variant(resize_to_fill: [500, 500]), class: "img-thumbnail" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
             <div class="card-body">
               <h4 class="card-title"><%= product.title %></h4>
               <p class="card-text"><%= product.description %></p>
@@ -19,6 +28,7 @@
                 <p class="card-text"><strong>Price:</strong> <%= number_to_currency(product.price) %></p>
               <% end %>
             </div>
+
           </div>
         </a>
       </div>
@@ -26,7 +36,6 @@
   </div>
 </div>
 <%= render "shared/footer" %>
-
 
 <style>
     .ribbon {
@@ -58,5 +67,56 @@
     a{
         text-decoration: none;
     }
+
+    .image-gallery {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .image-gallery .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100%;
+        transition: transform .3s ease-in-out;
+    }
+
+    .image-gallery .row > div {
+        flex: 0 0 auto;
+        margin: 0 10px;
+        height: 100%;
+        width: 200px;
+        transition: transform .3s ease-in-out;
+    }
+
+    .image-gallery .row > div:first-child {
+        margin-left: 0;
+    }
+
+    .image-gallery .row > div:last-child {
+        margin-right: 0;
+    }
+
+    .image-gallery .row > div:hover {
+        transform: scale(1.1);
+    }
+
+    .image-gallery .row > div img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center center;
+        transition: transform .3s ease-in-out;
+    }
+
+    .image-gallery .row > div:hover img {
+        transform: scale(1.2);
+    }
+
 
 </style>
