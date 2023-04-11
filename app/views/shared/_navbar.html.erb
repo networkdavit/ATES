@@ -18,6 +18,12 @@
           <% end %>
         </div>
       </li>
+      <% if current_user && current_user.admin? %>
+        <li class="nav-item">
+          <p>Welcome <%= current_user.email %></p>
+          <li><%= link_to "New Product", new_product_path %></li>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
