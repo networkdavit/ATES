@@ -28,7 +28,6 @@
                 <p class="card-text"><strong>Price:</strong> <%= number_to_currency(product.price) %></p>
               <% end %>
             </div>
-
           </div>
         </a>
       </div>
@@ -37,86 +36,3 @@
 </div>
 <%= render "shared/footer" %>
 
-<style>
-    .ribbon {
-        width: 80px;
-        height: 80px;
-        overflow: hidden;
-        position: absolute;
-        top: -3px;
-        right: -3px;
-    }
-
-    .ribbon span {
-        font-size: 16px;
-        color: #fff;
-        text-transform: uppercase;
-        text-align: center;
-        line-height: 20px;
-        transform: rotate(45deg);
-        display: block;
-        position: absolute;
-        width: 100px;
-        left: -15px;
-        top: 20px;
-        background-color: #ff6b6b;
-        background-image: linear-gradient(-45deg, #ff6b6b 0%, #ee6a7b 100%);
-        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.5);
-    }
-
-    a{
-        text-decoration: none;
-    }
-
-    .image-gallery {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        overflow: hidden;
-    }
-
-    .image-gallery .row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
-        height: 100%;
-        transition: transform .3s ease-in-out;
-    }
-
-    .image-gallery .row > div {
-        flex: 0 0 auto;
-        margin: 0 10px;
-        height: 100%;
-        width: 200px;
-        transition: transform .3s ease-in-out;
-    }
-
-    .image-gallery .row > div:first-child {
-        margin-left: 0;
-    }
-
-    .image-gallery .row > div:last-child {
-        margin-right: 0;
-    }
-
-    .image-gallery .row > div:hover {
-        transform: scale(1.1);
-    }
-
-    .image-gallery .row > div img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: center center;
-        transition: transform .3s ease-in-out;
-    }
-
-    .image-gallery .row > div:hover img {
-        transform: scale(1.2);
-    }
-
-
-</style>

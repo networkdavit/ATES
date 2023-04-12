@@ -22,6 +22,7 @@
         <li class="nav-item">
           <p>Welcome <%= current_user.email %></p>
           <li><%= link_to "New Product", new_product_path %></li>
+          <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
         </li>
       <% end %>
     </ul>
