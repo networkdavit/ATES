@@ -28,6 +28,9 @@
         <%= link_to "Delete", product_path(@product), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this product?" }, class: "btn btn-danger" %>
       </div>
     <% end %>
+    <%#= link_to "Add New YourModel", new_order_path(product_id: @product.id), class: "btn btn-primary" %>
+    <%= link_to "Order this product", new_order_path(product_id: @product.id), class: "btn btn-primary" %>
+
   </div>
 </div>
 <%= render "shared/footer" %>
