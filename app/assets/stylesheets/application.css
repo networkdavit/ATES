@@ -44,11 +44,11 @@ a{
 }
 
 .image-gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    overflow: hidden;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*height: 200px;*/
+    /*overflow: hidden;*/
 }
 
 .image-gallery .row {
@@ -91,5 +91,14 @@ a{
 
 .image-gallery .row > div:hover img {
     transform: scale(1.2);
+}
+
+.navbar-brand{
+    height: 100px;
+    width: 100px;
+}
+
+.not-found{
+    height: 375px !important;
 }
 

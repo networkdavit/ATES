@@ -12,11 +12,13 @@
             <% end %>
             <div class="image-gallery">
               <div class="row">
-                <% if product.images.any? %>
-                  <div class="col-md-4">
+                <div class="col-md-4">
+                  <% if product.images.any? %>
                     <%= image_tag product.images.first.variant(resize_to_fill: [500, 500]), class: "img-thumbnail" %>
-                  </div>
-                <% end %>
+                  <% else %>
+                    <%= image_tag "image-not-found-icon.png", class: "img-thumbnail not-found" %>
+                  <% end %>
+                </div>
               </div>
             </div>
             <div class="card-body">
