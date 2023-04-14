@@ -4,7 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <%= link_to 'Home', root_path, class: 'nav-link' %>
       </li>
@@ -18,6 +18,55 @@
           <% end %>
         </div>
       </li>
+      <% if current_user && current_user.admin? %>
+        <div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin Menu
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <p><%= link_to "New Product", new_product_path %></p>
+              <p><%= link_to "Edit Password", edit_user_registration_path(current_user), method: :get %></p>
+              <p><%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %></p>
+              <p><%= link_to "View Orders", orders_path %></p>
+            </div>
+          </li>
+
+        </div>
+
+    <% end %>
     </ul>
+    <form class="d-flex mx-3" id="search-form">
+      <%= text_field_tag :search, nil, class: "form-control me-2", placeholder: "Search" %>
+      <%= button_tag "Search", type: "submit", class: "btn btn-outline-secondary", id: "search-btn", name: nil %>
+    </form>
   </div>
+  <% if current_user && current_user.admin? %>
+    <p>Welcome <%= current_user.email %></p>
+  <% end %>
 </nav>
+
+
+<script>
+    $(document).on('turbolinks:load', function() {
+        $('#search-form').on('keyup', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                $('#search-btn').click();
+            }
+        });
+
+        $('#search-btn').on('click', function() {
+            let searchValue = $('#search-form').find('input[name="search"]').val();
+            $.ajax({
+                type: 'GET',
+                url: '/products',
+                data: { search: searchValue },
+                dataType: 'script'
+            });
+        });
+    });
+</script>
+
+
+
