@@ -8,12 +8,13 @@ class ProductsController < ApplicationController
 
   def index
     if params[:search].present?
+      redirect_to root_path(search: params[:search]) and return unless request.path == root_path
       @products = Product.where("title LIKE ?", "%#{params[:search]}%")
     else
       @products = Product.all
     end
   end
-
+  
   def new
     @product = Product.new
   end

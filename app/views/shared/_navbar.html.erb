@@ -36,8 +36,8 @@
 
     <% end %>
     </ul>
-    <form class="d-flex mx-3" id="search-form">
-      <%= text_field_tag :search, nil, class: "form-control me-2", placeholder: "Search" %>
+    <form class="d-flex mx-3" id="search-form" action="<%= root_path %>" method="get">
+      <%= text_field_tag :search, params[:search], class: "form-control me-2", placeholder: "Search" %>
       <%= button_tag "Search", type: "submit", class: "btn btn-outline-secondary", id: "search-btn", name: nil %>
     </form>
   </div>
