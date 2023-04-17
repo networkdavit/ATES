@@ -7,6 +7,11 @@
     <% @category.products.each do |product| %>
       <div class="col-md-4">
         <a href="<%= product_path(product) %>">
+            <% if product.images.any? %>
+              <%= image_tag product.images.first.variant(resize_to_fill: [500, 500]), class: "img-thumbnail" %>
+            <% else %>
+              <%= image_tag "image-not-found-icon.png", class: "img-thumbnail not-found" %>
+            <% end %>
             <div class="card mb-4 box-shadow">
               <% if product.discount_price.present? %>
                 <div class="ribbon"><span>SALE</span></div>
